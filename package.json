@@ -18,7 +18,8 @@
     "lint:pretty": "pretty-quick --staged",
     "reinstall": "rimraf yarn.lock && rimraf package.lock.json && rimraf node_modules && npm run bootstrap",
     "install:husky": "is-ci || husky install",
-    "postinstall": "npm run install:husky"
+    "postinstall": "npm run install:husky",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
