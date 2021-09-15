@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// import './design/tailwind.css';
 import 'tailwindcss/tailwind.css';
 import './design/index.less';
 
@@ -16,7 +17,7 @@ const App: React.FC = () => {
 import registerServiceWorker from './sw';
 import catchUnhandledRejection from './errorHandler';
 
-console.log(process.env.REACT_GLOB_API_URL);
+console.log('sssss', process.env.NODE_ENV);
 registerServiceWorker();
 catchUnhandledRejection();
 

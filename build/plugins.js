@@ -3,8 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin'); //区分大小写
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
-const { TypedCssModulesPlugin } = require('typed-css-modules-webpack-plugin');
+// const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const { compilerHooks } = require('./custom-plugins');
@@ -13,13 +12,10 @@ const config = require('./config');
 const { resolve, assetsPath, processEnv } = require('./utils');
 
 const basePlugins = [
-  new MomentLocalesPlugin({
-    localesToKeep: ['es-us', 'zh-cn'],
-  }),
+  // new MomentLocalesPlugin({
+  //   localesToKeep: ['es-us', 'zh-cn'],
+  // }),
   new webpack.DefinePlugin(processEnv(constants.APP_ENV)),
-  new TypedCssModulesPlugin({
-    globPattern: 'src/!(styles)/**/*.scss',
-  }),
   new ForkTsCheckerWebpackPlugin({
     typescript: { configFile: resolve('tsconfig.json') },
     eslint: { enabled: true, files: resolve('src/**/*.{ts,tsx}') },
@@ -30,7 +26,7 @@ const devPlugins = [
   new webpack.HotModuleReplacementPlugin(),
   new HtmlWebpackPlugin({
     filename: 'index.html',
-    template: 'build/tpl/index.html',
+    template: './index.html',
     inject: true,
   }),
   new CaseSensitivePathsPlugin(),
@@ -40,7 +36,7 @@ const devPlugins = [
 const prodPlugins = [
   new HtmlWebpackPlugin({
     filename: config.index,
-    template: 'build/tpl/index.html',
+    template: './index.html',
     inject: true,
     minify: {
       removeComments: true,

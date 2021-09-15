@@ -1,5 +1,5 @@
 export default function registerServiceWorker() {
-  if ('serviceWorker' in navigator && process.env.APP_ENV !== 'dev') {
+  if ('serviceWorker' in navigator && process.env.NODE_ENV !== 'dev') {
     window.addEventListener('load', () => {
       const { serviceWorker } = navigator;
       serviceWorker

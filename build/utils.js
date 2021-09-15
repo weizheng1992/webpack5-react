@@ -12,7 +12,7 @@ exports.resolve = function (dir) {
   return path.join(__dirname, './../', dir);
 };
 
-exports.processEnv = function (envConf = 'development') {
+exports.processEnv = function (envConf = 'dev') {
   const env = dotenv.config({ path: '.env.' + envConf });
   const envConfig = env.parsed;
   const oriEnv = {};
@@ -27,8 +27,9 @@ exports.processEnv = function (envConf = 'development') {
   return defineEnv;
 };
 
-exports.wrapperEnv = function (envConf = 'development') {
+exports.wrapperEnv = function (envConf = 'dev') {
   const env = dotenv.config({ path: '.env.' + envConf });
+  console.log(env);
   const envConfig = env.parsed;
   const oriEnv = {};
   Object.assign(oriEnv, {

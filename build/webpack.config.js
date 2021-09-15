@@ -10,7 +10,6 @@ const { assetsPath, wrapperEnv } = require('./utils');
 const { createProxy } = require('./proxy');
 require('./cleanup-folder');
 const env = wrapperEnv(process.env.APP_ENV);
-console.log('(((((((((((((((', config.alias);
 const conf = {
   mode: process.env.NODE_ENV,
   entry: { app: ['./src/index.tsx'] },
