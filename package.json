@@ -17,8 +17,6 @@
     "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
     "lint:pretty": "pretty-quick --staged",
     "reinstall": "rimraf yarn.lock && rimraf package.lock.json && rimraf node_modules && npm run bootstrap",
-    "install:husky": "is-ci || husky install",
-    "postinstall": "npm run install:husky",
     "prepare": "husky install"
   },
   "keywords": [],
@@ -71,6 +69,7 @@
     "postcss-loader": "^6.1.1",
     "prettier": "^2.3.0",
     "prettier-stylelint": "^0.4.2",
+    "pretty-quick": "^3.1.1",
     "purgecss-webpack-plugin": "^4.0.3",
     "react-dev-utils": "^11.0.4",
     "style-loader": "^3.2.1",
