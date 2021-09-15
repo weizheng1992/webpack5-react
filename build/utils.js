@@ -29,7 +29,6 @@ exports.processEnv = function (envConf = 'dev') {
 
 exports.wrapperEnv = function (envConf = 'dev') {
   const env = dotenv.config({ path: '.env.' + envConf });
-  console.log(env);
   const envConfig = env.parsed;
   const oriEnv = {};
   Object.assign(oriEnv, {

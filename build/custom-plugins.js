@@ -1,4 +1,4 @@
-const clearConsole = require('react-dev-utils/clearConsole');
+// const clearConsole = require('react-dev-utils/clearConsole');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 
 const compilerHooks = [

@@ -11,6 +11,7 @@ module.exports = {
   // output html
   index: path.resolve(__dirname, `./../dist/${APP_ENV}/index.html`),
   assetsRoot: path.resolve(__dirname, `./../dist/${APP_ENV}`),
+  assetSrc: path.resolve(__dirname, 'src'),
   assetsPublicPath: IS_DEV ? '/' : `${STATICDOMAIN}/`,
   assetsSubDirectory: 'static',
   alias: {

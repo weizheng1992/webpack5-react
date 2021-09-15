@@ -1,5 +1,3 @@
-const openBrowser = require('react-dev-utils/openBrowser');
-
 const config = require('./config');
 const constants = require('./constants');
 const styleRules = require('./rules/styleRules');
@@ -27,14 +25,15 @@ const conf = {
   cache: {
     type: 'filesystem',
     // 可选配置
-    buildDependencies: {
-      config: [__filename], // 当构建依赖的config文件（通过 require 依赖）内容发生变化时，缓存失效
-    },
+    // buildDependencies: {
+    //   config: [__filename], // 当构建依赖的config文件（通过 require 依赖）内容发生变化时，缓存失效
+    // },
     //name: '', // 配置以name为隔离，创建不同的缓存文件，如生成PC或mobile不同的配置缓存
   },
   resolve: {
     extensions: constants.FILE_EXTENSIONS,
     alias: config.alias,
+    modules: ['node_modules', config.assetSrc],
   },
   module: {
     rules: [...styleRules, ...jsRules, ...fileRules],
@@ -43,19 +42,34 @@ const conf = {
   stats: 'minimal',
   target: 'web',
   devtool: config.sourceMap,
+  optimization: {
+    splitChunks: {
+      // include all types of chunks
+      chunks: 'all',
+      // 重复打包问题
+      cacheGroups: {
+        vendors: {
+          // node_modules里的代码
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+          // name: 'vendors', 一定不要定义固定的name
+          priority: 10, // 优先级
+          enforce: true,
+        },
+      },
+    },
+  },
 };
 
 if (process.env.NODE_ENV === 'development') {
   conf.devServer = {
-    // 不显示模块信息
-    stats: 'errors-warnings',
     port: env.REACT_PORT,
     hot: true,
-    disableHostCheck: true,
-    host: '0.0.0.0',
-    after: function () {
-      openBrowser(`http://localhost:${env.REACT_PORT}`);
+    compress: true,
+    client: {
+      progress: true,
     },
+    open: true,
     proxy: createProxy(JSON.parse(env.REACT_PROXY)),
   };
 }

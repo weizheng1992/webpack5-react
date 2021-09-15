@@ -5,6 +5,11 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 // const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const chalk = require('chalk');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+
+const PurgeCSSPlugin = require('purgecss-webpack-plugin');
+const glob = require('glob');
 
 const { compilerHooks } = require('./custom-plugins');
 const constants = require('./constants');
@@ -52,6 +57,12 @@ const prodPlugins = [
     chunkFilename: assetsPath('css/[name].[id].[contenthash].css'),
     ignoreOrder: true,
   }),
+
+  // CSS Tree Shaking
+  new PurgeCSSPlugin({
+    paths: glob.sync(`${config.assetSrc}/**/*`, { nodir: true }),
+  }),
+
   new WorkboxPlugin.GenerateSW({
     cacheId: 'react-webpack',
     clientsClaim: true,
@@ -73,6 +84,10 @@ const prodPlugins = [
     //     handler: 'StaleWhileRevalidate',
     //   },
     // ],
+  }),
+  // 进度条
+  new ProgressBarPlugin({
+    format: `  :msg [:bar] ${chalk.green.bold(':percent')} (:elapsed s)`,
   }),
 ];
 

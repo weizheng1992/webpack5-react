@@ -1,9 +1,8 @@
-
 const imageInlineSizeLimit = 4 * 1024;
 module.exports = [
   {
     test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-    type: "asset",
+    type: 'asset',
     parser: {
       dataUrlCondition: {
         maxSize: imageInlineSizeLimit, // 4kb
@@ -12,6 +11,6 @@ module.exports = [
   },
   {
     test: /\.(eot|svg|ttf|woff|woff2?)$/,
-    type: "asset/resource",
+    type: 'asset/resource',
   },
 ];

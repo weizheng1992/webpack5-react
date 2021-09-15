@@ -7,6 +7,7 @@
   "scripts": {
     "bootstrap": "yarn install",
     "dev": "vite --config build/vite.config.dev.js --mode dev",
+    "dev:webpack": "cross-env NODE_ENV=development APP_ENV=dev webpack serve --progress --mode=development --config build/webpack.config.js ",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.config.js",
     "build:dev": "cross-env APP_ENV=dev npm run build",
     "build:prod": "cross-env APP_ENV=prod npm run build --report",
@@ -70,6 +71,7 @@
     "prettier": "^2.3.0",
     "prettier-stylelint": "^0.4.2",
     "pretty-quick": "^3.1.1",
+    "progress-bar-webpack-plugin": "^2.1.0",
     "purgecss-webpack-plugin": "^4.0.3",
     "react-dev-utils": "^11.0.4",
     "style-loader": "^3.2.1",
