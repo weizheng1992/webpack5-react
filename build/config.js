@@ -2,8 +2,6 @@ const path = require('path');
 
 const { APP_ENV, IS_DEV, NODE_ENV } = require('./constants');
 
-// const DOMAIN = "https://starter.jackple.com";
-
 // static resource domain（CDN）
 const STATICDOMAIN = APP_ENV === 'prod' ? '.' : '';
 

@@ -1,24 +1,18 @@
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig } from 'vite';
 import reactRefresh from '@vitejs/plugin-react-refresh';
 import config from './config';
-import { processEnv } from './utils';
+import { wrapperEnv } from './utils';
 
 export default defineConfig(({ mode }) => {
-  const root = process.cwd();
-
-  const env = loadEnv(mode, root);
-  console.log('loadenv', env);
-
   // The boolean type read by loadEnv is a string. This function can be converted to boolean type
-  const viteEnv = processEnv(mode);
-  console.log('eeeeee', viteEnv);
+  const pocssEnv = wrapperEnv(mode);
   return {
     resolve: {
       alias: config.alias,
     },
-    envPrefix: 'REACT_',
+    envPrefix: 'WX_',
     define: {
-      process: {},
+      'process.env': pocssEnv,
     },
     plugins: [
       reactRefresh({

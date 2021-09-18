@@ -1,3 +1,4 @@
+const TerserPlugin = require('terser-webpack-plugin');
 const config = require('./config');
 const constants = require('./constants');
 const styleRules = require('./rules/styleRules');
@@ -42,7 +43,9 @@ const conf = {
   stats: 'minimal',
   target: 'web',
   devtool: config.sourceMap,
-  optimization: {
+};
+if (process.env.NODE_ENV !== 'development') {
+  conf.optimization = {
     splitChunks: {
       // include all types of chunks
       chunks: 'all',
@@ -58,19 +61,29 @@ const conf = {
         },
       },
     },
-  },
-};
+    minimizer: [
+      new TerserPlugin({
+        test: /\.(js|jsx|ts|tsx)$/,
+        exclude: /node_modules/,
+        extractComments: true,
+        include: './src',
+      }),
+    ],
+    usedExports: true,
+    sideEffects: false,
+  };
+}
 
 if (process.env.NODE_ENV === 'development') {
   conf.devServer = {
-    port: env.REACT_PORT,
+    port: env.WX_PORT,
     hot: true,
     compress: true,
     client: {
       progress: true,
     },
     open: true,
-    proxy: createProxy(JSON.parse(env.REACT_PROXY)),
+    proxy: createProxy(JSON.parse(env.WX_PROXY)),
   };
 }
 

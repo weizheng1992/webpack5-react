@@ -1,10 +1,10 @@
 import React from 'react';
+import { HashRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 // import './design/tailwind.css';
 import 'tailwindcss/tailwind.css';
 import './design/index.less';
 
-import { HashRouter } from 'react-router-dom';
 import RenderRouter from '../src/router';
 const App: React.FC = () => {
   return (

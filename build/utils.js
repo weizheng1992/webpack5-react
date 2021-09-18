@@ -1,8 +1,7 @@
 const path = require('path');
+const dotenv = require('dotenv');
 
 const config = require('./config');
-
-const dotenv = require('dotenv');
 
 exports.assetsPath = function (_path) {
   return path.posix.join(config.assetsSubDirectory, _path);

@@ -22,13 +22,22 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
   ],
   settings: {
     react: {
       version: 'detect', // 自动读取已安装的react版本
     },
+    'import/resolver': {
+      webpack: {
+        config: './build/webpack.config.js',
+      },
+    },
   },
-  plugins: ['@typescript-eslint', 'react'],
+  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'import'],
   rules: {
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
@@ -58,5 +67,12 @@ module.exports = {
     'space-before-function-paren': 'off',
     'react/prop-types': 'off',
     'react/display-name': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'no-var': 'error', // 禁止使用 var
+    'import/no-unresolved': ['error', { commonjs: true, amd: true }],
+    'import/named': 'off',
+    'import/order': 'error',
+    'import/prefer-default-export': 'error',
   },
 };
